@@ -7,5 +7,19 @@ import { Component } from '@angular/core';
   
 })
 export class AppComponent {
+  username: string = "";
+  emptystring = false;
+ 
+  onUpdateUserName( event : any ){
+  
+    if(this.username != "")
+       this.emptystring = true;
+  }
 
+
+  resetUserName(){
+
+          this.username=""; 
+          this.emptystring = false;     
+  }
 }
