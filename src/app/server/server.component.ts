@@ -11,7 +11,12 @@ import { NgModule } from '@angular/core';
 
 @Component({
     selector: 'app-server',
-    templateUrl: './server.component.html'
+    templateUrl: './server.component.html',
+    styles: [`
+        .online {
+            color : white;
+        }
+    `]
 })
 
 
@@ -23,8 +28,9 @@ export class ServerComponent {
     allowNewServer  = false;
     serverCreationStatus = 'no server was created';
     serverName: string ='TestServer';
-
+    serverCreated = false;
     constructor(){
+        this.serverStatus = Math.random() >0.5 ? 'online':'offline';
         setTimeout(()=>{
             this.allowNewServer = true;
         },2000);
@@ -36,10 +42,15 @@ export class ServerComponent {
    
     onCreateServer() {
         this.serverCreationStatus = "Server was created!";
+        this.serverCreated = true;
     }
 
     OnUpdateServerName(event: any){
      this.serverName  =  (<HTMLInputElement>event.target).value;
         console.log(event);
+    }
+
+    getColor(){
+        return this.serverStatus === 'online'? 'green':'red';
     }
 }
